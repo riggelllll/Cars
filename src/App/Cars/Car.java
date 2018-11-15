@@ -14,6 +14,7 @@ public class Car {
         this.type = type;
         this.size = size;
         this.id = id;
+        isEmpty = true;
     }
 
     public Type getType() {
