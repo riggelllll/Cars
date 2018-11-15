@@ -10,7 +10,7 @@ public class Car {
     private int id;
     private boolean isEmpty;
 
-    Car(Type type, Size size, int id){
+    public Car(Type type, Size size, int id){
         this.type = type;
         this.size = size;
         this.id = id;
