@@ -18,7 +18,7 @@ public class CarGenerator {
     private Random rand;
     private static final int AMOUNT_TYPES = 3;
 
-    CarGenerator(int carsAmount){
+    public CarGenerator(int carsAmount){
         this.carsAmount = carsAmount;
         cars = new ArrayDeque<>(this.carsAmount);
         rand = new Random();
