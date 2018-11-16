@@ -42,4 +42,8 @@ public class CarGenerator {
     public ArrayDeque<Car> getCars() {
         return cars;
     }
+
+    public synchronized Car getCarFromQueue(){
+        return cars.remove();
+    }
 }
