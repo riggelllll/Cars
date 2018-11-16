@@ -27,8 +27,8 @@ public class CarGenerator {
         rand = new Random();
     }
 
-    public void generateCars(){
-        for (int i = 0 ; i < carsAmount; i++){
+    public void generateCars(int size){
+        for (int i = 0 ; i < size; i++){
             int randType = rand.nextInt(AMOUNT__CAR_TYPES); // return 0-2
             int randSize = rand.nextInt(AMOUNT__CAR_SIZES);
             cars.add(new Car(Type.values()[randType], Size.values()[randSize], getCarId()));
