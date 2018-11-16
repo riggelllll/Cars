@@ -15,26 +15,27 @@ public class CarGenerator{
 
     private static int carId;
     private ArrayDeque<Car>cars;
-    private int carsAmount;
+    private int maxCarsAmount;
     private int carsCounter;
     private Random rand;
     private static final int AMOUNT__CAR_TYPES = 3;
     private static final int AMOUNT__CAR_SIZES = 3;
 
-    public CarGenerator(int carsAmount){
-        this.carsAmount = carsAmount;
-        carsCounter = carsAmount;
-        cars = new ArrayDeque<>(this.carsAmount);
+    public CarGenerator(int maxCarsAmount){
+        this.maxCarsAmount = maxCarsAmount;
+        carsCounter = 0;
+        cars = new ArrayDeque<>(this.maxCarsAmount);
         rand = new Random();
     }
 
     public void generateCars(int size){
+        carsCounter+= size;
         for (int i = 0 ; i < size; i++){
             cars.add(gen.generate());
         }
     }
 
-    private synchronized int getCarId(){
+    private synchronized int createCarId(){
          return carId++;
     }
 
@@ -43,13 +44,14 @@ public class CarGenerator{
     }
 
     public synchronized Car getCarFromQueue(){
+        carsCounter--;
         return cars.remove();
     }
 
     private Generator<Car> gen = () ->{
         int randType = rand.nextInt(AMOUNT__CAR_TYPES); // return 0-2
         int randSize = rand.nextInt(AMOUNT__CAR_SIZES);
-        return new Car(Type.values()[randType], Size.values()[randSize], getCarId());
+        return new Car(Type.values()[randType], Size.values()[randSize], createCarId());
     };
 
 

@@ -1,8 +1,8 @@
 package App.Tunnel;
 
 import App.Cars.Car;
-
-import java.util.ArrayDeque;
+import App.Cars.Type.Type;
+import java.util.ArrayList;
 
 public class Tunnel {
 
@@ -10,12 +10,42 @@ public class Tunnel {
     private boolean isFull;
     private static final int MAX_CARS_AMOUNT = 5;
     private int carsCounter;
-    private ArrayDeque<Car> cars;
+    private ArrayList<Car> carsInTunnel;
 
-    Tunnel(){
+    public Tunnel(){
         isEmpty = true;
         isFull = false;
         carsCounter = 0;
-        cars = new ArrayDeque<>();
+        carsInTunnel = new ArrayList<>();
     }
+
+    public static int getMaxCarsAmount() {
+        return MAX_CARS_AMOUNT;
+    }
+
+    public int getCarsCounter() {
+        return carsCounter;
+    }
+
+    public synchronized void setCarsCounter(int carsCounter) {
+        this.carsCounter = carsCounter;
+    }
+
+    public void setCarInTunnel(Car car) {
+        carsInTunnel.add(car);
+    }
+
+    public Car getCarToStock(Type type){
+        int carIndex = -1; //havent in array
+
+        for (int i = 0; i < carsInTunnel.size(); i++){
+            if (type == carsInTunnel.get(i).getType()){
+                carIndex = i;
+                break;
+            }
+        }
+
+        return (carIndex != -1) ? carsInTunnel.remove(carIndex) : null;
+    }
+
 }
