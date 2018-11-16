@@ -10,13 +10,13 @@ public class Main {
     public static void main(String[] args) {
 
         CarGenerator generator = new CarGenerator(10);
-        generator.generateCars(5);
+        generator.generateCars(3);
         Tunnel tunnel = new Tunnel();
-        for (int i = 0; i < 5; i++){
+        for (int i = 0; i < 3; i++){
             tunnel.setCarInTunnel(generator.getCarFromQueue());
         }
-        Car car1 = tunnel.getCarToStock(Type.MILK);
-        Car car2 = tunnel.getCarToStock(Type.BREAD);
+        Car car1 = tunnel.getCarFromTunnel(Type.MILK);
+        Car car2 = tunnel.getCarFromTunnel(Type.BREAD);
         System.out.println("Hello");
     }
 }

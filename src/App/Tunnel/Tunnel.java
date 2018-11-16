@@ -6,15 +6,11 @@ import java.util.ArrayList;
 
 public class Tunnel {
 
-    private boolean isEmpty;
-    private boolean isFull;
     private static final int MAX_CARS_AMOUNT = 5;
     private int carsCounter;
     private ArrayList<Car> carsInTunnel;
 
     public Tunnel(){
-        isEmpty = true;
-        isFull = false;
         carsCounter = 0;
         carsInTunnel = new ArrayList<>();
     }
@@ -32,10 +28,11 @@ public class Tunnel {
     }
 
     public void setCarInTunnel(Car car) {
+        carsCounter++;
         carsInTunnel.add(car);
     }
 
-    public Car getCarToStock(Type type){
+    public Car getCarFromTunnel(Type type){
         int carIndex = -1; //havent in array
 
         for (int i = 0; i < carsInTunnel.size(); i++){
@@ -44,6 +41,8 @@ public class Tunnel {
                 break;
             }
         }
+
+        if (carIndex != -1) carsCounter--;
 
         return (carIndex != -1) ? carsInTunnel.remove(carIndex) : null;
     }

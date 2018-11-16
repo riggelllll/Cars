@@ -6,10 +6,7 @@ import App.Cars.Type.Type;
 import App.Interfaces.Generator;
 
 import java.util.ArrayDeque;
-import java.util.Queue;
 import java.util.Random;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class CarGenerator{
 
@@ -37,10 +34,6 @@ public class CarGenerator{
 
     private synchronized int createCarId(){
          return carId++;
-    }
-
-    public ArrayDeque<Car> getCars() {
-        return cars;
     }
 
     public synchronized Car getCarFromQueue(){
