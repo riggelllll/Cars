@@ -3,6 +3,7 @@ package App.Tasks;
 import App.Cars.Car;
 import App.Cars.Type.Size;
 import App.Cars.Type.Type;
+import App.Interfaces.Generator;
 
 import java.util.ArrayDeque;
 import java.util.Queue;
@@ -10,7 +11,7 @@ import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class CarGenerator {
+public class CarGenerator{
 
     private static int carId;
     private ArrayDeque<Car>cars;
@@ -29,9 +30,7 @@ public class CarGenerator {
 
     public void generateCars(int size){
         for (int i = 0 ; i < size; i++){
-            int randType = rand.nextInt(AMOUNT__CAR_TYPES); // return 0-2
-            int randSize = rand.nextInt(AMOUNT__CAR_SIZES);
-            cars.add(new Car(Type.values()[randType], Size.values()[randSize], getCarId()));
+            cars.add(gen.generate());
         }
     }
 
@@ -46,4 +45,12 @@ public class CarGenerator {
     public synchronized Car getCarFromQueue(){
         return cars.remove();
     }
+
+    private Generator<Car> gen = () ->{
+        int randType = rand.nextInt(AMOUNT__CAR_TYPES); // return 0-2
+        int randSize = rand.nextInt(AMOUNT__CAR_SIZES);
+        return new Car(Type.values()[randType], Size.values()[randSize], getCarId());
+    };
+
+
 }
