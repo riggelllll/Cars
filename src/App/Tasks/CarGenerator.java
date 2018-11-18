@@ -47,5 +47,7 @@ public class CarGenerator{
         return new Car(Type.values()[randType], Size.values()[randSize], createCarId());
     };
 
-
+    public int getMaxCarsAmount() {
+        return maxCarsAmount;
+    }
 }

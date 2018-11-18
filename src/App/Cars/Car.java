@@ -5,16 +5,17 @@ import App.Cars.Type.Type;
 
 public class Car {
     private Type type;
-    private Size size;
+    private Size maxSize;
     private int currentSize;
     private int id;
     private boolean isEmpty;
 
     public Car(Type type, Size size, int id){
         this.type = type;
-        this.size = size;
+        this.maxSize = size;
         this.id = id;
         isEmpty = true;
+        currentSize = 0;
     }
 
     public Type getType() {
@@ -22,7 +23,7 @@ public class Car {
     }
 
     public Size getSize() {
-        return size;
+        return maxSize;
     }
 
     public int getId() {
@@ -35,5 +36,13 @@ public class Car {
 
     public int getCurrentSize() {
         return currentSize;
+    }
+
+    public void setCurrentSize(int currentSize) {
+        this.currentSize+= currentSize;
+    }
+
+    public int getMaxsize() {
+        return maxSize.getSize();
     }
 }
