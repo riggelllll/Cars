@@ -29,9 +29,10 @@ public class Dispatcher {
     }
 
     public void run()throws Exception{
+        boolean running = true;
         init();
 
-        while (true){
+        while (running){
             for(Stock stock : stocks){
                 //START
                 if (stock.isEmpty()){//На складе нет машины
@@ -39,7 +40,7 @@ public class Dispatcher {
                         if (tunnel.isHaveType(stock.getType())){//Если соответствует типу машина
                             setAndLoadInStock(stock);
                         }else {//машина не соответствует типу
-                            return;
+                            continue;
                         }
                     }else {//тонель не полон
                         if(carGenerator.isFull()){//В очереди есть машины
@@ -47,12 +48,16 @@ public class Dispatcher {
                             if (tunnel.isHaveType(stock.getType())){//Если соответствует типу машина
                                 setAndLoadInStock(stock);
                             }else {//машина не соответствует типу
-                                return;
+                                continue;
                             }
                         }else {//в очереди нет машин
                             carGenerator.generateCars(carGenerator.getMaxCarsAmount() - carGenerator.getCarsCounter());
                             addCarsToTunnel();
-                            setAndLoadInStock(stock);
+                            if (tunnel.isHaveType(stock.getType())){//Если соответствует типу машина
+                                setAndLoadInStock(stock);
+                            }else {//машина не соответствует типу
+                                continue;
+                            }
                         }
 
                     }
@@ -79,11 +84,5 @@ public class Dispatcher {
         stock.setCar(tunnel.getCarFromTunnel(stock.getType()));
         stock.loadCar();
     }
-
-
-
-
-
-
 
 }

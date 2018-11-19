@@ -16,15 +16,16 @@ public class Stock {
     }
 
     public void setCar(Car car){
-        System.out.println("Машина " + car.getId() + " прибыла на склад " + type.toString());
+        if (car == null) System.out.println("На склад пришел NULL");
         this.car = car;
+        System.out.println("Машина " + this.car.getId() + " на складе " + type.toString());
         isEmpty = false;
     }
 
     public synchronized void loadCar() throws InterruptedException {
         while (car.getCurrentSize() != car.getMaxsize()){
             car.setCurrentSize(10);
-            Thread.sleep(1000);
+            Thread.sleep(10);
         }
         car.setEmpty(false);
         System.out.println("Машина " + car.getType() + " " + car.getId() +  " ЗАГРУЖЕНА и отправилась со склада");
