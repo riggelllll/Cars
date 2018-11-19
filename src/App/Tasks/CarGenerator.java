@@ -50,4 +50,12 @@ public class CarGenerator{
     public int getMaxCarsAmount() {
         return maxCarsAmount;
     }
+
+    public boolean isFull(){
+        return (carsCounter == maxCarsAmount);
+    }
+
+    public int getCarsCounter() {
+        return carsCounter;
+    }
 }

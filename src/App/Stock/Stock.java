@@ -25,10 +25,22 @@ public class Stock {
             Thread.sleep(1000);
         }
         System.out.println("Машина " + car.getType() + " " + car.getSize() +  " ЗАГРУЖЕНА и отправилась со склада");
+        deleteCar();
+    }
+
+    public boolean isEmpty() {
+        return isEmpty;
+    }
+
+    public Car getCar() {
+        return car;
+    }
+
+    public void deleteCar(){
         car = null;
     }
 
-
-
-
+    public Type getType() {
+        return type;
+    }
 }

@@ -47,4 +47,15 @@ public class Tunnel {
         return (carIndex != -1) ? carsInTunnel.remove(carIndex) : null;
     }
 
+    public boolean isFull(){
+        return carsCounter == MAX_CARS_AMOUNT;
+    }
+
+    public ArrayList<Car> getCarsInTunnel() {
+        return carsInTunnel;
+    }
+
+    public int get_MAX_CARS_AMOUNT(){
+        return MAX_CARS_AMOUNT;
+    }
 }
