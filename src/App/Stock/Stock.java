@@ -3,16 +3,22 @@ package App.Stock;
 import App.Cars.Car;
 import App.Cars.Type.Type;
 
+import java.util.ArrayList;
+
 public class Stock {
     private Car car;
     private String name;
     private Type type;
     private boolean isEmpty;
+    //TODO delete
+    private ArrayList<Car>usedCars;
 
     public Stock(String name, Type type) {
         this.name = name;
         this.type = type;
         isEmpty = true;
+        //TODO delete
+        usedCars = new ArrayList<>();
     }
 
     public void setCar(Car car){
@@ -42,6 +48,8 @@ public class Stock {
     }
 
     public void deleteCar(){
+        //TODO delete
+        usedCars.add(car);
         car = null;
     }
 
