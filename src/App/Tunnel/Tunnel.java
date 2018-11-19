@@ -15,10 +15,6 @@ public class Tunnel {
         carsInTunnel = new ArrayList<>();
     }
 
-    public static int getMaxCarsAmount() {
-        return MAX_CARS_AMOUNT;
-    }
-
     public int getCarsCounter() {
         return carsCounter;
     }
@@ -47,10 +43,6 @@ public class Tunnel {
 
     public boolean isFull(){
         return carsCounter == MAX_CARS_AMOUNT;
-    }
-
-    public ArrayList<Car> getCarsInTunnel() {
-        return carsInTunnel;
     }
 
     public int get_MAX_CARS_AMOUNT(){

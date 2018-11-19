@@ -22,10 +22,6 @@ public class Car {
         return type;
     }
 
-    public Size getSize() {
-        return maxSize;
-    }
-
     public int getId() {
         return id;
     }
