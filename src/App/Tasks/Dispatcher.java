@@ -30,8 +30,6 @@ public class Dispatcher {
 
     public void run()throws Exception{
         boolean running = true;
-        //TODO delete
-        int test = 0;
         init();
 
         while (running){
@@ -73,14 +71,7 @@ public class Dispatcher {
 
              //END
             }
-            //TODO delete
-            test++;
-            if (test == 10)running=false;
-
-
         }
-        //TODO delete
-        System.out.println("s");
     }
 
     private void addCarsToTunnel(){
