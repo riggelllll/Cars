@@ -36,7 +36,7 @@ public class Dispatcher {
                 //START
                 if (stock.isEmpty()){//На складе нет машины
                     if (tunnel.isFull()){//В тонеле есть машины и он полон
-                        if (tunnel.getCarFromTunnel(stock.getType()) != null){//Если соответствует типу машина
+                        if (tunnel.isHaveType(stock.getType())){//Если соответствует типу машина
                             setAndLoadInStock(stock);
                         }else {//машина не соответствует типу
                             return;
@@ -44,7 +44,7 @@ public class Dispatcher {
                     }else {//тонель не полон
                         if(carGenerator.isFull()){//В очереди есть машины
                             addCarsToTunnel();
-                            if (tunnel.getCarFromTunnel(stock.getType()) != null){//Если соответствует типу машина
+                            if (tunnel.isHaveType(stock.getType())){//Если соответствует типу машина
                                 setAndLoadInStock(stock);
                             }else {//машина не соответствует типу
                                 return;

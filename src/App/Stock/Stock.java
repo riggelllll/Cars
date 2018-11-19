@@ -16,7 +16,9 @@ public class Stock {
     }
 
     public void setCar(Car car){
+        System.out.println("Машина " + car.getId() + " прибыла на склад " + type.toString());
         this.car = car;
+        isEmpty = false;
     }
 
     public synchronized void loadCar() throws InterruptedException {
@@ -24,8 +26,10 @@ public class Stock {
             car.setCurrentSize(10);
             Thread.sleep(1000);
         }
-        System.out.println("Машина " + car.getType() + " " + car.getSize() +  " ЗАГРУЖЕНА и отправилась со склада");
+        car.setEmpty(false);
+        System.out.println("Машина " + car.getType() + " " + car.getId() +  " ЗАГРУЖЕНА и отправилась со склада");
         deleteCar();
+        isEmpty = true;
     }
 
     public boolean isEmpty() {

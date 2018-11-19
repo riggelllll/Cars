@@ -30,6 +30,8 @@ public class CarGenerator{
         for (int i = 0 ; i < size; i++){
             cars.add(gen.generate());
         }
+
+        System.out.println("Машин в очереди " + carsCounter);
     }
 
     private synchronized int createCarId(){

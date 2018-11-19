@@ -45,4 +45,8 @@ public class Car {
     public int getMaxsize() {
         return maxSize.getSize();
     }
+
+    public void setEmpty(boolean empty) {
+        isEmpty = empty;
+    }
 }

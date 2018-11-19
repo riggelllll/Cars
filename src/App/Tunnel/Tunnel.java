@@ -23,13 +23,10 @@ public class Tunnel {
         return carsCounter;
     }
 
-    public synchronized void setCarsCounter(int carsCounter) {
-        this.carsCounter = carsCounter;
-    }
-
     public void setCarInTunnel(Car car) {
-        carsCounter++;
         carsInTunnel.add(car);
+        carsCounter++;
+        System.out.println("Машина добавлена в тонель " + " в тонеле " + carsCounter + " машин");
     }
 
     public Car getCarFromTunnel(Type type){
@@ -45,6 +42,7 @@ public class Tunnel {
         if (carIndex != -1) carsCounter--;
 
         return (carIndex != -1) ? carsInTunnel.remove(carIndex) : null;
+
     }
 
     public boolean isFull(){
@@ -57,5 +55,17 @@ public class Tunnel {
 
     public int get_MAX_CARS_AMOUNT(){
         return MAX_CARS_AMOUNT;
+    }
+
+    public boolean isHaveType(Type type){
+        boolean isHaveType = false;
+        for (int i = 0; i < carsInTunnel.size(); i++){
+            if (type == carsInTunnel.get(i).getType()){
+                isHaveType = true;
+                break;
+            }
+        }
+
+        return isHaveType;
     }
 }
