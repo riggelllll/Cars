@@ -22,10 +22,10 @@ public class Stock {
         isEmpty = false;
     }
 
-    public synchronized void loadCar() throws InterruptedException {
+    public void loadCar() throws InterruptedException {
         while (car.getCurrentSize() != car.getMaxsize()){
             car.setCurrentSize(10);
-            Thread.sleep(10);
+            Thread.sleep(100);
         }
         car.setEmpty(false);
         System.out.println("Машина " + car.getType() + " " + car.getId() +  " ЗАГРУЖЕНА и отправилась со склада");

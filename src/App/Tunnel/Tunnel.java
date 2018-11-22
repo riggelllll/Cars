@@ -19,13 +19,13 @@ public class Tunnel {
         return carsCounter;
     }
 
-    public void setCarInTunnel(Car car) {
+    public synchronized void setCarInTunnel(Car car) {
         carsInTunnel.add(car);
         carsCounter++;
         System.out.println("Машина добавлена в тонель " + " в тонеле " + carsCounter + " машин");
     }
 
-    public Car getCarFromTunnel(Type type){
+    public synchronized Car getCarFromTunnel(Type type){
         int carIndex = -1; //havent in array
 
         for (int i = 0; i < carsInTunnel.size(); i++){
