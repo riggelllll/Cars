@@ -22,11 +22,10 @@ public class Tunnel {
     public synchronized void setCarInTunnel(Car car) {
         carsInTunnel.add(car);
         carsCounter++;
-        System.out.println("Машина добавлена в тонель " + " в тонеле " + carsCounter + " машин");
     }
 
     public synchronized Car getCarFromTunnel(Type type){
-        int carIndex = -1; //havent in array
+        int carIndex = -1;//отсутствует в массиве
 
         for (int i = 0; i < carsInTunnel.size(); i++){
             if (type == carsInTunnel.get(i).getType()){

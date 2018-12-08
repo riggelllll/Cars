@@ -4,7 +4,6 @@ import App.Cars.Car;
 import App.Cars.Type.Size;
 import App.Cars.Type.Type;
 import App.Interfaces.Generator;
-
 import java.util.ArrayDeque;
 import java.util.Random;
 
@@ -30,8 +29,6 @@ public class CarGenerator{
         for (int i = 0 ; i < size; i++){
             cars.add(gen.generate());
         }
-
-        System.out.println("Машин в очереди " + carsCounter);
     }
 
     private synchronized int createCarId(){

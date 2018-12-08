@@ -1,24 +1,30 @@
 package App.Tasks;
 
-import App.Cars.Car;
 import App.Cars.Type.Type;
 import App.Stock.Stock;
 import App.Tunnel.Tunnel;
-
 import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
-public class Dispatcher {
-    CarGenerator carGenerator;
-    Tunnel tunnel;
-    ArrayList<Stock>stocks;
+public class Dispatcher{
+    private CarGenerator carGenerator;
+    private Tunnel tunnel;
+    private ArrayList<Stock>stocks;
+    public ExecutorService service;
 
     private static final int STOCKS_AMOUNT = 3;
 
-    public Dispatcher(int maxCarsInQueu){
-        carGenerator = new CarGenerator(maxCarsInQueu);
+    public Dispatcher(int maxCarsInQueue){
+        carGenerator = new CarGenerator(maxCarsInQueue);
         tunnel = new Tunnel();
         stocks = new ArrayList<>(STOCKS_AMOUNT);
-
+        init();
+        service = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+        service.execute(taskDispatcher);
+        service.execute(stocks.get(0));
+        service.execute(stocks.get(1));
+        service.execute(stocks.get(2));
     }
 
     private void init(){
@@ -28,9 +34,13 @@ public class Dispatcher {
         stocks.add(new Stock("Склад", Type.SAUSAGE));
     }
 
-    public void run()throws Exception{
+    Runnable taskDispatcher = ()->{
+        work();
+    };
+
+    public void work() {
         boolean running = true;
-        init();
+
 
         while (running){
             for(Stock stock : stocks){
@@ -68,7 +78,6 @@ public class Dispatcher {
                         stock.deleteCar();
                     }
                 }
-
              //END
             }
         }
@@ -80,9 +89,8 @@ public class Dispatcher {
         }
     }
 
-    private void setAndLoadInStock(Stock stock) throws Exception{
+    private void setAndLoadInStock(Stock stock){
         stock.setCar(tunnel.getCarFromTunnel(stock.getType()));
-        stock.loadCar();
     }
 
 }
